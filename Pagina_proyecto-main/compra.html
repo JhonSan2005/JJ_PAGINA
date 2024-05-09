@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compra</title>
+    <style>
+        body {
+    background-image: url('imganes/klole.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: auto;
+}
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Carrito de Compra</h1>
+        
+        <form action="#" method="POST">
+            <div class="contact-info">
+                <h2>Información de Contacto</h2>
+                <input type="text" name="nombre" placeholder="Nombres y Apellidos" required>
+                <input type="text" name="cedula" placeholder="Cédula" required>
+                <input type="email" name="email" placeholder="Correo Electrónico" required>
+                <input type="tel" name="telefono" placeholder="Teléfono" required>
+            </div>
+
+            <div class="shipping-info">
+                <h2>Información de Envío</h2>
+                <input type="text" name="direccion" placeholder="Dirección" required>
+                <input type="text" name="ciudad" placeholder="Ciudad" required>
+                <input type="text" name="departamento" placeholder="Departamento" required>
+                <input type="text" name="codigo_postal" placeholder="Código Postal" required>
+                <input type="text" name="pais" placeholder="País/Región" required>
+            </div>
+
+            <div class="delivery-options">
+                <h2>Opciones de Entrega</h2>
+                <label><input type="checkbox" name="envia" value="envia"> Envío a Domicilio</label>
+                <label><input type="checkbox" name="retiro" value="retiro"> Recoger en Tienda</label>
+            </div>
+
+            <div class="payment-methods">
+                <h2>Métodos de Pago</h2>
+                <label><input type="radio" name="metodo_pago" value="paypal"> PayPal</label><br>
+                <label><input type="radio" name="metodo_pago" value="tarjeta_credito"> Tarjeta de Crédito</label><br>
+                <label><input type="radio" name="metodo_pago" value="transferencia"> Transferencia Bancaria</label><br>
+            </div>
+
+            <button type="submit">Comprar Ahora</button>
+        </form>
+    </div>
+</body>
+</html>
