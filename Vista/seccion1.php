@@ -64,34 +64,34 @@ $seccion1 = "Inicio";
         </div>
     </div>
 </section>
-<?php
-include_once("C_productos.php");
-?>
-<?php if (is_array($productos) && count($productos) > 0): ?>
-        <?php foreach ($productos as $producto): ?>
-            <div class="producto">
-                <!-- Mostrar la imagen si está disponible -->
-                <?php if (!empty($producto['imagen_url'])): ?>
-                    <img src="http://localhost/Sitio/img/<?php echo $producto['imagen_url']; ?>" alt="<?php echo $producto['nombre_producto']; ?>"><br>
-                <?php else: ?>
-                    <p>Imagen no disponible</p>
-                <?php endif; ?>
+<div class="container">
+        <div class="row">
+            <?php
+            include_once("C_productos.php");
+            ?>
+            <?php if (is_array($productos) && count($productos) > 0): ?>
+                <?php foreach ($productos as $producto): ?>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="producto">
+                            <!-- Mostrar la imagen si está disponible -->
+                            <?php if (!empty($producto['imagen_url'])): ?>
+                                <img src="http://localhost/Sitio/img/<?php echo $producto['imagen_url']; ?>" alt="<?php echo $producto['nombre_producto']; ?>" class="img-fluid">
+                            <?php else: ?>
+                                <p>Imagen no disponible</p>
+                            <?php endif; ?>
 
-                <!-- Mostrar los demás detalles del producto -->
-                <p>ID: <?php echo $producto['id_producto']; ?></p>
-                <p>Nombre: <?php echo $producto['nombre_producto']; ?></p>
-                <p>Precio: $<?php echo $producto['precio']; ?></p>
-                <p>Impuesto: $<?php echo $producto['impuesto']; ?></p>
-                <p>Stock: <?php echo $producto['stock']; ?></p>
-                <p>Categoría: <?php echo $producto['id_categoria']; ?></p>
-                <p>Descripción: <?php echo $producto['descripcion']; ?></p>
-            </div>
-            <br>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p><?php echo $productos; ?></p>
-    <?php endif; ?> </div>
-
+                            <!-- Mostrar los demás detalles del producto -->
+                            <p><strong></strong> <?php echo $producto['nombre_producto']; ?>
+                            <p><strong></strong> $<?php echo $producto['precio']; ?></p>
+                            <p><strong></strong> <?php echo $producto['descripcion']; ?></p>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p><?php echo $productos; ?></p>
+            <?php endif; ?>
+        </div>
+    </div>
 <footer>
     <div class="container">
         <div class="row">

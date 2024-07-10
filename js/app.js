@@ -3,3 +3,4 @@ document.addEventListener('keyup', e =>{
         console.log(repuestos);
     })
 })
+
