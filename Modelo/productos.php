@@ -1,5 +1,5 @@
 <?php
-include_once('conexion.php');
+require_once('../config/Conexion.php');
 
 class Productos{
     public static function mostrarProductos(){

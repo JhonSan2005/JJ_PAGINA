@@ -1,5 +1,5 @@
 <?php
-require_once('conexion.php');
+require_once('../config/Conexion.php');
 
 class Producto {
     private static function conectar() {
