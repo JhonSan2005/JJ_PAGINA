@@ -1,11 +1,13 @@
 CREATE DATABASE  BD_JJ;
 use BD_JJ;
-CREATE TABLE `clientes` (
+CREATE TABLE `usuario` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `documento` INT NOT NULL UNIQUE, -- Haciendo el campo `documento` único
   `nombre` VARCHAR(100) NOT NULL,
   `correo` VARCHAR(100) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
+   fecha timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+   rol int(11) NOT NULL,
   KEY `idx_id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -34,9 +36,9 @@ CREATE TABLE `compras` (
   `cantidad` int DEFAULT NULL,
   `impuesto` int DEFAULT NULL,
   PRIMARY KEY (`id_compras`),
-  KEY `fk_clientes_compras` (`documento`),
+  KEY `fk_usuario_compras` (`documento`),
   KEY `fk_productos_compras` (`id_producto`),
-  CONSTRAINT `fk_clientes_compras` FOREIGN KEY (`documento`) REFERENCES `clientes` (`documento`),
+  CONSTRAINT `fk_usuario_compras` FOREIGN KEY (`documento`) REFERENCES `usuario` (`documento`),
   CONSTRAINT `fk_productos_compras` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -74,11 +76,11 @@ CREATE TABLE `facturas` (
   `total` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id_factura`),
   KEY `fk_compras_facturas` (`id_compras`),
-  KEY `fk_clientes_facturas` (`documento`),
+  KEY `fk_usuario_facturas` (`documento`),
   KEY `fk_productos_facturas` (`id_producto`),
   KEY `fk_categorias_facturas` (`id_categoria`),
   CONSTRAINT `fk_categorias_facturas` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`),
-  CONSTRAINT `fk_clientes_facturas` FOREIGN KEY (`documento`) REFERENCES `clientes` (`documento`),
+  CONSTRAINT `fk_usuario_facturas` FOREIGN KEY (`documento`) REFERENCES `usuario` (`documento`),
   CONSTRAINT `fk_compras_facturas` FOREIGN KEY (`id_compras`) REFERENCES `compras` (`id_compras`),
   CONSTRAINT `fk_productos_facturas` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -103,6 +105,46 @@ CREATE TABLE `admin` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`)
 );
+
+select*from categorias;
+select*from productos;
+CREATE TABLE `permisos` (
+  `id` int(11) NOT NULL,
+  `rol` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+select *from usuario;
+INSERT INTO `permisos` (`id`, `rol`) VALUES
+(1, 'Administrador'),
+(2, 'Lector');
+
+ALTER TABLE `permisos`
+  ADD PRIMARY KEY (`id`);
+
+
+ALTER TABLE `usuario`
+  ADD KEY `permisos` (`rol`);
+
+
+ALTER TABLE `permisos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `permisos` FOREIGN KEY (`rol`) REFERENCES `permisos` (`id`);
+COMMIT;
+drop database BD_JJ;
+
+
+
+
+
 
 
 
