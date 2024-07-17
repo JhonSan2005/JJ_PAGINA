@@ -1,9 +1,9 @@
 <?php
-/**
- * Autor: Camilo Figueroa (Crivera)
- * Redirecciona a la sección de inicio del sitio.
- */
+    require_once(__DIR__ . '../config/config.php');
+    require_once(__DIR__ . '/router.php');
 
-header("location: Vista");
+    $router = new Router();
+    $router->run()
+
 
 ?>
